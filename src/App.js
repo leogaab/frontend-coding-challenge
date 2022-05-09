@@ -16,18 +16,22 @@ function App() {
     })
   }, [])
 
+  const showAllTenants = () => setNewTenantsData(tenantsData)
+
+  const filterData = () => console.log('clicked');
+
   return (
       <>
         <div className="container">
           <h1>Tenants</h1>
           <ul className="nav nav-tabs">
-            <li className="nav-item">
+            <li className="nav-item" onClick={showAllTenants}>
               <a className="nav-link active" href="#">All</a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" onClick={filterData}>
               <a className="nav-link" href="#">Payment is late</a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" onClick={filterData}>
               <a className="nav-link" href="#">Lease ends in less than a month</a>
             </li>
           </ul>

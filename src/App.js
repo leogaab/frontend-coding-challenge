@@ -51,10 +51,10 @@ function App() {
             <li className="nav-item" onClick={showAllTenants}>
               <a className="nav-link active" href="#">All</a>
             </li>
-            <li className="nav-item" onClick={filterData}>
+            <li className="nav-item" onClick={() => filterData('late')}>
               <a className="nav-link" href="#">Payment is late</a>
             </li>
-            <li className="nav-item" onClick={filterData}>
+            <li className="nav-item" onClick={() => filterData('leaseEnds')}>
               <a className="nav-link" href="#">Lease ends in less than a month</a>
             </li>
           </ul>

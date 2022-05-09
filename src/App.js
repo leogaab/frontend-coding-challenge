@@ -18,7 +18,30 @@ function App() {
 
   const showAllTenants = () => setNewTenantsData(tenantsData)
 
-  const filterData = () => console.log('clicked');
+  const filterData = (status) => {
+
+    if (status === 'late') {
+      const tenantsWithLatePayment = newTenantsData.filter( tenant => tenant.paymentStatus === 'LATE')
+      setNewTenantsData(tenantsWithLatePayment)
+    } else {
+      // Created fake date for development purposes,
+      const fakeCurrentDate = new Date('2021/08/22')
+
+      // Helper function
+      const daysBetweenDates = (date1, date2) => { 
+        const difference = date1.getTime() - date2.getTime()
+        const days = Math.ceil(difference / (1000 * 3600 * 24));
+        console.log(days)
+        return days
+      }
+
+      const tenantsLeaseEnds = newTenantsData.filter( tenant => {
+        const leaseEndDate = new Date(tenant.leaseEndDate)
+        return daysBetweenDates(fakeCurrentDate, leaseEndDate) < 30 && daysBetweenDates(fakeCurrentDate, leaseEndDate) > 0;
+      })
+      setNewTenantsData(tenantsLeaseEnds)
+    }
+  }
 
   return (
       <>

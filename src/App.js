@@ -14,7 +14,7 @@ function App() {
       setTenantsData(response)
       setNewTenantsData(response)
     })
-  }, [tenants])
+  }, [])
 
   return (
       <>
@@ -42,15 +42,18 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Mark Otto</td>
-                <td>CURRENT</td>
-                <td>12/31/2020</td>
-                <td>
-                  <button className="btn btn-danger">Delete</button>
-                </td>
-              </tr>
+              {newTenantsData.map( ({ id, name, paymentStatus, leaseEndDate}) => (
+                <tr key={id}>
+                  <th>{id}</th>
+                  <td>{name}</td>
+                  <td>{paymentStatus}</td>
+                  <td>{leaseEndDate}</td>
+                  <td>
+                    <button className="btn btn-danger">Delete</button>
+                  </td>
+                </tr>
+              )
+              )}
             </tbody>
           </table>
         </div>

@@ -63,9 +63,6 @@ function App() {
 
       setFormErrors(validate(formValues));
     }
-
-
-    
   }
 
   const handleChange = (event) => {
@@ -148,29 +145,29 @@ function App() {
         </div>
         {showForm && (
           <div className="container">
-          <form onSubmit={submitHandler} >
-            <div className="form-group">
-              <label>Name</label>
-              <input className="form-control" id='name' name='name' type="text" value={formValues.name} onChange={handleChange}/>
-              {formErrors && formErrors.name && (<div className="is-invalid">{formErrors.name}</div>)} 
-            </div>
-            <div className="form-group">
-              <label>Payment Status</label>
-              <select className="form-control" id='paymentStatus' name='paymentStatus' onChange={handleChange} value={formValues.paymentStatus}>
-                <option>CURRENT</option>
-                <option>LATE</option>
-              </select>
-              <div className="is-invalid">{formErrors.paymentStatus}</div>
-            </div>
-            <div className="form-group">
-              <label>Lease End Date</label>
-              <input className="form-control" id='leaseEndDate' name='leaseEndDate' onChange={handleChange} value={formValues.leaseEndDate}/>
-              {formErrors && formErrors.leaseEndDate && (<div className="is-invalid">{formErrors.leaseEndDate}</div>)} 
-            </div>
-            <button className="btn btn-primary" type='submit'>Save</button>
-            <button className="btn" onClick={cancelForm}>Cancel</button>
-          </form>
-        </div>
+            <form onSubmit={submitHandler} >
+              <div className="form-group">
+                <label>Name</label>
+                <input className="form-control" id='name' name='name' type="text" value={formValues.name} onChange={handleChange}/>
+                {formErrors && formErrors.name && (<div className="is-invalid">{formErrors.name}</div>)} 
+              </div>
+              <div className="form-group">
+                <label>Payment Status</label>
+                <select className="form-control" id='paymentStatus' name='paymentStatus' onChange={handleChange} value={formValues.paymentStatus}>
+                  <option>CURRENT</option>
+                  <option>LATE</option>
+                </select>
+                <div className="is-invalid">{formErrors.paymentStatus}</div>
+              </div>
+              <div className="form-group">
+                <label>Lease End Date</label>
+                <input className="form-control" id='leaseEndDate' name='leaseEndDate' onChange={handleChange} value={formValues.leaseEndDate}/>
+                {formErrors && formErrors.leaseEndDate && (<div className="is-invalid">{formErrors.leaseEndDate}</div>)} 
+              </div>
+              <button className="btn btn-primary" type='submit'>Save</button>
+              <button className="btn" onClick={cancelForm}>Cancel</button>
+            </form>
+          </div>
         )}
         
       </>

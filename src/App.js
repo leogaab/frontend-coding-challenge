@@ -7,7 +7,8 @@ function App() {
 
   const [tenantsData, setTenantsData] = useState([])
   const [newTenantsData, setNewTenantsData] = useState([])
-
+  const [isActive, setIsActive] = useState(true)
+  const [showForm, setShowForm] = useState(false)
 
   useEffect( ()=> {
     tenants.then( response => {
@@ -49,13 +50,13 @@ function App() {
           <h1>Tenants</h1>
           <ul className="nav nav-tabs">
             <li className="nav-item" onClick={showAllTenants}>
-              <a className="nav-link active" href="#">All</a>
+              <a className={isActive ? "nav-link active" : "nav-link"} href="#">All</a>
             </li>
             <li className="nav-item" onClick={() => filterData('late')}>
-              <a className="nav-link" href="#">Payment is late</a>
+              <a className={!isActive ? "nav-link active" : "nav-link"} href="#">Payment is late</a>
             </li>
             <li className="nav-item" onClick={() => filterData('leaseEnds')}>
-              <a className="nav-link" href="#">Lease ends in less than a month</a>
+              <a className={!isActive ? "nav-link active" : "nav-link"} href="#">Lease ends in less than a month</a>
             </li>
           </ul>
           <table className="table">
@@ -85,29 +86,32 @@ function App() {
           </table>
         </div>
         <div className="container">
-          <button className="btn btn-secondary">Add Tenant</button>
+          <button className="btn btn-secondary" onClick={() => setShowForm(!showForm)}>Add Tenant</button>
         </div>
-        <div className="container">
-          <form>
-            <div className="form-group">
-              <label>Name</label>
-              <input className="form-control"/>
-            </div>
-            <div className="form-group">
-              <label>Payment Status</label>
-              <select className="form-control">
-                <option>CURRENT</option>
-                <option>LATE</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Lease End Date</label>
-              <input className="form-control"/>
-            </div>
-            <button className="btn btn-primary">Save</button>
-            <button className="btn">Cancel</button>
-          </form>
-        </div>
+        {showForm && (
+          <div className="container">
+            <form>
+              <div className="form-group">
+                <label>Name</label>
+                <input className="form-control"/>
+              </div>
+              <div className="form-group">
+                <label>Payment Status</label>
+                <select className="form-control">
+                  <option>CURRENT</option>
+                  <option>LATE</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Lease End Date</label>
+                <input className="form-control"/>
+              </div>
+              <button className="btn btn-primary">Save</button>
+              <button className="btn">Cancel</button>
+            </form>
+          </div>
+        )}
+        
       </>
   );
 }

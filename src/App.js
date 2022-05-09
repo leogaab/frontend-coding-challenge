@@ -44,6 +44,12 @@ function App() {
     }
   }
 
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+    console.log(event.target)
+  }
+
   return (
       <>
         <div className="container">
@@ -90,7 +96,7 @@ function App() {
         </div>
         {showForm && (
           <div className="container">
-            <form>
+            <form onSubmit={submitHandler}>
               <div className="form-group">
                 <label>Name</label>
                 <input className="form-control"/>

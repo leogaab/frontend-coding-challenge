@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Service } from './Service';
 
 function App() {
+
+  const tenants = Service.getTenants()
+
+  const [tenantsData, setTenantsData] = useState([])
+  const [newTenantsData, setNewTenantsData] = useState([])
+
+
+  useEffect( ()=> {
+    tenants.then( response => {
+      setTenantsData(response)
+      setNewTenantsData(response)
+    })
+  }, [tenants])
 
   return (
       <>
